@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NETVISION | Network Intelligence</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+</head>
+
+<body>
+
+<div class="background-glow"></div>
+
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-icon">N</div>
+        <div>
+            <h2>NETVISION</h2>
+            <span>NETWORK INTELLIGENCE SYSTEM</span>
+        </div>
+    </div>
+
+    <div class="top-status">
+        <span class="status-dot"></span>
+        SYSTEM <strong id="systemStatus">OFFLINE</strong>
+    </div>
+</header>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <h4>MAIN MENU</h4>
+
+        <a href="#dashboard" class="active">◈ Dashboard</a>
+        <a href="#network">◎ Network Topology</a>
+        <a href="#analytics">▥ Traffic Analytics</a>
+        <a href="#packets">▤ Packet Analyzer</a>
+        <a href="#security">⬡ Security Monitor</a>
+
+        <div class="sidebar-bottom">
+            <span>PROJECT VERSION</span>
+            <strong>NETVISION 1.0</strong>
+        </div>
+    </aside>
+
+    <main class="content" id="dashboard">
+
+        <section class="welcome">
+            <div>
+                <span class="eyebrow">CYBERSECURITY MONITORING PLATFORM</span>
+                <h1>Network <span>Intelligence</span></h1>
+                <p>Monitor, visualize and analyze network activity in real time.</p>
+            </div>
+
+            <div class="clock" id="clock">00:00:00</div>
+        </section>
+
+        <section class="controls">
+            <button class="btn primary" onclick="startDemo()">
+                ▶ Start Demo
+            </button>
+
+            <button class="btn live" onclick="startLive()">
+                ◉ Start Live
+            </button>
+
+            <button class="btn danger" onclick="stopMonitoring()">
+                ■ Stop
+            </button>
+
+            <button class="btn secondary" onclick="resetMonitoring()">
+                ↻ Reset
+            </button>
+
+            <span class="mode-label" id="modeLabel">MODE: STOPPED</span>
+        </section>
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <span>TOTAL PACKETS</span>
+                <h2 id="totalPackets">0</h2>
+                <small>Captured packets</small>
+            </div>
+
+            <div class="stat-card">
+                <span>TOTAL DATA</span>
+                <h2 id="totalBytes">0 B</h2>
+                <small>Observed traffic volume</small>
+            </div>
+
+            <div class="stat-card">
+                <span>INCOMING</span>
+                <h2 id="incoming">0</h2>
+                <small>Incoming packets</small>
+            </div>
+
+            <div class="stat-card">
+                <span>OUTGOING</span>
+                <h2 id="outgoing">0</h2>
+                <small>Outgoing packets</small>
+            </div>
+
+        </section>
+
+        <section class="panel" id="network">
+
+            <div class="panel-heading">
+                <div>
+                    <span class="eyebrow">LIVE VISUALIZATION</span>
+                    <h2>3D Network Topology</h2>
+                </div>
+                <span class="live-tag">● NETWORK MAP</span>
+            </div>
+
+            <div id="network3d"></div>
+
+            <div class="legend">
+                <span>● Router</span>
+                <span>● Server</span>
+                <span>● Devices</span>
+            </div>
+
+        </section>
+
+        <section class="chart-grid" id="analytics">
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2>Protocol Distribution</h2>
+                </div>
+                <div id="protocolChart"></div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h2>Traffic Overview</h2>
+                </div>
+                <div id="trafficChart"></div>
+            </div>
+
+        </section>
+
+        <section class="panel" id="packets">
+
+            <div class="panel-heading">
+                <div>
+                    <span class="eyebrow">NETWORK FORENSICS</span>
+                    <h2>Packet Analyzer</h2>
+                </div>
+                <span class="live-tag">LIVE DATA</span>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>TIME</th>
+                            <th>SOURCE IP</th>
+                            <th>DESTINATION IP</th>
+                            <th>PROTOCOL</th>
+                            <th>SIZE</th>
+                            <th>DIRECTION</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="packetTable">
+                        <tr>
+                            <td colspan="6">Waiting for network data...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <section class="panel" id="security">
+            <div class="panel-heading">
+                <h2>Security Monitor</h2>
+                <span class="live-tag">ACTIVITY REVIEW</span>
+            </div>
+
+            <div id="securityMessage">
+                <span class="security-icon">⬡</span>
+                <div>
+                    <strong>Monitoring status</strong>
+                    <p>Start demo or live monitoring to analyze packet activity.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            NETVISION © 2026 | NETWORK TRAFFIC MONITORING SYSTEM
+        </footer>
+
+    </main>
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+</html>
